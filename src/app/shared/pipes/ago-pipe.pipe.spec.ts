@@ -7,6 +7,11 @@ describe('AgoPipePipe', () => {
     expect(pipe).toBeTruthy();
   });
 
+  it('should show singular second', () => {
+    const pipe = new AgoPipe();
+    expect(pipe.transform(1)).toEqual('just now');
+  });
+
   it('should show plural seconds', () => {
     const pipe = new AgoPipe();
     expect(pipe.transform(45)).toEqual('45 seconds ago');

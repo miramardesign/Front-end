@@ -8,8 +8,8 @@ export class AgoPipe implements PipeTransform {
 
   private itemPluralMapping = {
     second: {
-      '=0': 'Just now',
-      '=1': 'Just Now',
+      '=0': 'just now',
+      '=1': 'just now',
       other: '# seconds ago'
     },
     minute: {
@@ -61,11 +61,10 @@ export class AgoPipe implements PipeTransform {
     const year = day * 365.25;
 
     if (value < minute) {
-      return Math.floor(value) + ' seconds ago';
+      return this.getMapping(value, 'second', this.itemPluralMapping);
     } else if (value < hour) {
       const val =  Math.floor( value / minute);
       return this.getMapping(val, 'minute', this.itemPluralMapping);
-
     } else if (value < day) {
       const val =  Math.floor( value / hour);
       return this.getMapping(val, 'hour', this.itemPluralMapping);
