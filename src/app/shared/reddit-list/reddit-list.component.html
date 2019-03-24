@@ -11,10 +11,10 @@
   <li *ngFor="let item of redditList" class="nav-item">
     {{item?.data?.author}}
    
-   created: {{item.data.created}}
+   <!-- created: {{item.data.created}} -->
 
-    //make pipe
-    {{ ( now - item?.data?.created ) / 60 / 60}} minutes ago
+    <!-- {{ ( now - item?.data?.created ) / 60 / 60}} minutes ago -->
+    {{now - item?.data.created | agoPipe}}
 
     <br /> use grid
     
