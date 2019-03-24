@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RedditListComponent } from './reddit-list.component';
 import { AgoPipe } from '../pipes/ago-pipe.pipe';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('RedditListComponent', () => {
   let component: RedditListComponent;
@@ -9,10 +10,11 @@ describe('RedditListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RedditListComponent ],
+      declarations: [ RedditListComponent, AgoPipe ],
       providers: [
-        AgoPipe
-      ]
+        // AgoPipe
+      ],
+      imports: [HttpClientModule]
     })
     .compileComponents();
   }));

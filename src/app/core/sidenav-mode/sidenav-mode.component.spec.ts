@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SidenavModeComponent } from './sidenav-mode.component';
+import { MatSidenavModule, MatRadioModule } from '@angular/material';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('SidenavModeComponent', () => {
   let component: SidenavModeComponent;
@@ -8,7 +12,15 @@ describe('SidenavModeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SidenavModeComponent ]
+      declarations: [ SidenavModeComponent ],
+      imports: [
+        BrowserAnimationsModule,
+        MatSidenavModule,
+        MatRadioModule,
+        SharedModule,
+        HttpClientModule
+      ],
+
     })
     .compileComponents();
   }));

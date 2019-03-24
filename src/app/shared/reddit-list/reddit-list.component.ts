@@ -17,8 +17,8 @@ export class RedditListComponent implements OnInit {
    * @param id a unique identifier to persist
    */
   public dismiss(id: string) {
-    console.log('id'); //TODO;
-  };
+    console.log('id'); // TODO;
+  }
 
   ngOnInit() {
 
