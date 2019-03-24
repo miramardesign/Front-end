@@ -1,12 +1,23 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
+
+import { catchError, tap } from 'rxjs/operators';
+import { HandleErrorMixin, Activatable, Mixin } from '../../shared/mixins/mixins';
+
+/**
+ * service for interacting with reddit api:
+ * https://www.reddit.com/dev/api
+ */
 
 @Injectable({
   providedIn: 'root'
 })
+@Mixin([Activatable, HandleErrorMixin])
+
 export class RedditServiceService {
+  handleError: (err: HttpErrorResponse) => Observable<any>;
 
   constructor(private http: HttpClient) {
   }
@@ -15,15 +26,13 @@ export class RedditServiceService {
   // https://www.reddit.com/r/videos/top.json?limit=50
 
 
-
   /**
    *
-   * @param organizationId the org id in db
-   * http://int-organizations-api.geo-comm.com/swagger/#!/Organizations/V2OrganizationsByOrganizationIdGet
+   * @param num the number of posts
    */
   public getTop(num: number): Observable<any> {
     const topFiftyUrl = `https://www.reddit.com/r/videos/top.json?limit=${num}`;
-    
+
     // const orgApiOrgUrl = `${environment.API.organizations.organizations}/${organizationId}`;
     return this.http.get<any>(topFiftyUrl)
       .pipe(
@@ -31,6 +40,5 @@ export class RedditServiceService {
         catchError(this.handleError)
       );
   }
-
 
 }

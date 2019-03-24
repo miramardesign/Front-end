@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RedditServiceService } from '../services/reddit-service.service';
 
 @Component({
   selector: 'app-reddit-list',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RedditListComponent implements OnInit {
 
-  constructor() { }
+
+  public redditList: any;
+
+  constructor(    private redditService: RedditServiceService
+    ) { }
 
   ngOnInit() {
+
+    this.redditService.getTop(50).subscribe( resTop =>  {
+      console.log('restop:', resTop);
+      this.redditList = resTop;
+    } );
   }
 
 }
