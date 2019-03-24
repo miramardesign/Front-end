@@ -1,8 +1,8 @@
-import { AgoPipePipe } from './ago-pipe.pipe';
+import { AgoPipe } from './ago-pipe.pipe';
 
 describe('AgoPipePipe', () => {
   it('create an instance', () => {
-    const pipe = new AgoPipePipe();
+    const pipe = new AgoPipe();
     expect(pipe).toBeTruthy();
   });
 });

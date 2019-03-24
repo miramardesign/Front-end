@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RedditListComponent } from './reddit-list.component';
+import { AgoPipe } from '../pipes/ago-pipe.pipe';
 
 describe('RedditListComponent', () => {
   let component: RedditListComponent;
@@ -8,7 +9,10 @@ describe('RedditListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RedditListComponent ]
+      declarations: [ RedditListComponent ],
+      providers: [
+        AgoPipe
+      ]
     })
     .compileComponents();
   }));

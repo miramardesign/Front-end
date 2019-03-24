@@ -10,17 +10,19 @@
 <ul *ngIf="redditList">
   <li *ngFor="let item of redditList" class="nav-item">
     {{item?.data?.author}}
-   
-   <!-- created: {{item.data.created}} -->
-
-    <!-- {{ ( now - item?.data?.created ) / 60 / 60}} minutes ago -->
     {{now - item?.data.created | agoPipe}}
 
-    <br /> use grid
+    <br /> 
+    <!-- use grid -->
     
     <img [src]="item.data.thumbnail" [alt]="item.data.title" />
       -  {{item?.data?.title}} - chevron
+
+    <br /> 
+      <!-- use grid -->
+     <a (click)="dismiss(id)" > (x) Dismiss </a>  - <span class="nothing-rhymes-with-orange">{{item?.data.num_comments }} comments</span>
+
+     <hr />
   </li>  
   
-  <hr />
 </ul>
