@@ -11,11 +11,13 @@
   <li *ngFor="let item of redditList" class="nav-item">
     {{item?.data?.author}}
    
+   created: {{item.data.created}}
+
     //make pipe
-    {{ ( nowEpoch - item?.data?.created ) / 60}} minutes ago
+    {{ ( now - item?.data?.created ) / 60 / 60}} minutes ago
 
     <br /> use grid
-
+    
     <img [src]="item.data.thumbnail" [alt]="item.data.title" />
       -  {{item?.data?.title}} - chevron
   </li>  

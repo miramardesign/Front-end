@@ -9,7 +9,7 @@ import { RedditServiceService } from '../services/reddit-service.service';
 export class RedditListComponent implements OnInit {
 
   public redditList: any = [];
-  public nowEpoch = new Date().getTime();
+  public now = new Date().getTime() / 1000;
     constructor(private redditService: RedditServiceService  ) { }
 
 ngOnInit() {

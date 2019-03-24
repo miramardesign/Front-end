@@ -31,7 +31,7 @@ export class RedditServiceService {
    * @param num the number of posts
    */
   public getTop(num: number): Observable<any> {
-    const topFiftyUrl = `https://www.reddit.com/r/videos/top.json?limit=${num}`;
+    const topFiftyUrl = `https://www.reddit.com/r/all/top.json?limit=${num}`;
 
     // const orgApiOrgUrl = `${environment.API.organizations.organizations}/${organizationId}`;
     return this.http.get<any>(topFiftyUrl)
