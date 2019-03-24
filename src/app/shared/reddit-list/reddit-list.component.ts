@@ -12,6 +12,25 @@ export class RedditListComponent implements OnInit {
   public now = new Date().getTime() / 1000;
   constructor(private redditService: RedditServiceService) { }
 
+
+   public itemPluralMapping = {
+    second: {
+      '=0': 'Just now',
+      '=1': 'Just Now',
+      other: '# Seconds ago'
+    },
+    minute: {
+      //'=0' : '1 minute ago',
+      '=1': '1 minute ago',
+      other: '# minutes ago'
+    },
+    hour: {
+      //'=0' : '1 hour ago',
+      '=1': '1 hour ago',
+      other: '# hours ago'
+    },
+  };
+
   /**
    * dismiss the listing and persist it as well
    * @param id a unique identifier to persist

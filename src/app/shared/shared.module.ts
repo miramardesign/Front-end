@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, I18nPluralPipe } from '@angular/common';
 import { RedditListComponent } from './reddit-list/reddit-list.component';
 import { AgoPipe } from './pipes/ago-pipe.pipe';
 
@@ -9,7 +9,8 @@ import { AgoPipe } from './pipes/ago-pipe.pipe';
     CommonModule
   ],
   exports: [
-    RedditListComponent
-],
+    RedditListComponent,
+  ],
+ // providers: [I18nPluralPipe]
 })
 export class SharedModule { }
