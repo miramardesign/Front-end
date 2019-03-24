@@ -1,7 +1,24 @@
-
 <!-- toggled with a stylish(stylus) browser plugin stylesheet -->
-<pre class="debug" style="display: none"> 
+<pre class="debug"
+  style="display: none">
 
-  {{ redditList| json
-  }}
+  <!-- {{ redditList?.data?.children | json }}  -->
+
 </pre>
+
+
+<ul *ngIf="redditList">
+  <li *ngFor="let item of redditList" class="nav-item">
+    {{item?.data?.author}}
+   
+    //make pipe
+    {{ ( nowEpoch - item?.data?.created ) / 60}} minutes ago
+
+    <br /> use grid
+
+    <img src="item.data.thumbnail" alt="item.data.title" />
+      -  {{item?.data?.title}} - chevron
+  </li>  
+  
+  <hr />
+</ul>

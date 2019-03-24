@@ -8,18 +8,19 @@ import { RedditServiceService } from '../services/reddit-service.service';
 })
 export class RedditListComponent implements OnInit {
 
+  public redditList: any = [];
+  public nowEpoch = new Date().getTime();
+    constructor(private redditService: RedditServiceService  ) { }
 
-  public redditList: any;
+ngOnInit() {
 
-  constructor(    private redditService: RedditServiceService
-    ) { }
+  this.redditService.getTop(50).subscribe(resTop => {
+    console.log('restop:', resTop);
+    if (resTop && resTop.data && resTop.data.children) {
+      this.redditList = resTop.data.children;
+    }
 
-  ngOnInit() {
-
-    this.redditService.getTop(50).subscribe( resTop =>  {
-      console.log('restop:', resTop);
-      this.redditList = resTop;
-    } );
-  }
+  });
+}
 
 }
