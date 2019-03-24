@@ -17,14 +17,28 @@ export class RedditListComponent implements OnInit {
    * @param id a unique identifier to persist
    */
   public dismiss(id: string) {
-    console.log('id'); // TODO;
+    console.log('id', id); // TODO;
   }
+
+  /**
+   * dismiss all listings
+   */
+  public dismissAll(id: string) {
+    console.log('dismissAll called'); // TODO;
+  }
+
+  /**
+   * restore all listings or we cant see them again if persisted
+   */
+  public restoreAll(id: string) {
+    console.log('restoreAll called'); // TODO;
+  }
+
 
   ngOnInit() {
 
     /** get the listings from the api */
     this.redditService.getTop(50).subscribe(resTop => {
-      console.log('restop:', resTop);
       if (resTop && resTop.data && resTop.data.children) {
         this.redditList = resTop.data.children;
       }

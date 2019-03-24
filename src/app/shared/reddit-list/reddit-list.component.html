@@ -20,9 +20,12 @@
 
     <br /> 
       <!-- use grid -->
-     <a (click)="dismiss(id)" > (x) Dismiss </a>  - <span class="nothing-rhymes-with-orange">{{item?.data.num_comments }} comments</span>
+     <a (click)="dismiss(item)" > (x) Dismiss </a>  - <span class="nothing-rhymes-with-orange">{{item?.data.num_comments }} comments</span>
 
      <hr />
   </li>  
   
 </ul>
+
+<a (click)="dismissAll()" > (x) Dismiss All </a>
+<a (click)="restoreAll()" > (x) Dismiss All </a>
