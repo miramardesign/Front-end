@@ -11,11 +11,12 @@ import * as md from '../../shared/models';
 export class RedditDescComponent implements OnInit {
 
   constructor(private redditService: RedditServiceService, public perist: PersistenceService) { }
-  private redditDesc: md.DataChild;
+  private item: md.DataChild;
   ngOnInit() {
 
     this.redditService.getDesc().subscribe(child => {
-      this.redditDesc = child;
+      console.log('subscribe returned', child);
+      this.item = child;
     });
 
   }
