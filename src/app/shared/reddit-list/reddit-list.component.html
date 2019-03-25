@@ -3,7 +3,7 @@
     *ngIf="redditList">
 
     <div *ngFor="let item of redditList">
-      <li *ngIf="!item?.dismissed"
+      <li *ngIf="!item?.dismissed"  [@enterAnimation]
         class="nav-item">
 
         <div class="row">
