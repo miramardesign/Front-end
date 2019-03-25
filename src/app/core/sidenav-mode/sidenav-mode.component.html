@@ -1,13 +1,13 @@
-<mat-sidenav-container class="sidenav-container" >
-  <mat-sidenav #sidenav [mode]="mode.value">
+<mat-sidenav-container class="sidenav-container row" >
+  <mat-sidenav #sidenav [mode]="mode.value" class="col-md-4">
     <p><button mat-button (click)="sidenav.toggle()">Toggle</button></p>
-    <p>
+    <div>
 
       <app-reddit-list></app-reddit-list>
-    </p>
+    </div>
   </mat-sidenav>
 
-  <mat-sidenav-content>
+  <mat-sidenav-content class="col-md-8">
     <p><button mat-button (click)="sidenav.toggle()">Toggle</button></p>
       <app-reddit-desc></app-reddit-desc>
   </mat-sidenav-content>

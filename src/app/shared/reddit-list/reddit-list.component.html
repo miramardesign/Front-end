@@ -9,7 +9,7 @@
       class="nav-item">
 
       <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-5">
 
           {{item?.data?.author}}
           {{now - item?.data.created | agoPipe}}
@@ -34,7 +34,7 @@
       </div>
       <div class="row">
 
-        <div class="col-md-10">
+        <div class="col-md-5">
 
           <!-- use grid -->
           <a (click)="onDismiss(item.data.id)" class="cursor-pointer">

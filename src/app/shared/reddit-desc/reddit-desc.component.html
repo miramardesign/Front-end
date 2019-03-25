@@ -1,5 +1,28 @@
-<p>
-  reddit-desc works!
+item json{{item |json}}
+<div class="row"
+  *ngIf="item">
+  <div class="col-md-10">
 
-  {{redditDesc|json}}
-</p>
+    {{item?.data?.author}}
+    {{now - item?.data.created | agoPipe}}
+  </div>
+</div>
+<div class="row">
+
+  <div class="col-md-10">
+
+    <img [src]="item?.data.thumbnail"
+      [alt]="item?.data.title" />
+    - {{item?.data?.title}}
+
+  </div>
+
+</div>
+<div class="row">
+
+  <div class="col-md-10">
+
+    <span class="nothing-rhymes-with-orange">{{item?.data.num_comments }} comments</span>
+
+  </div>
+</div>
