@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, Subject, of } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 import { catchError, tap, distinctUntilChanged } from 'rxjs/operators';
 import { HandleErrorMixin, Activatable, Mixin } from '../../shared/mixins/mixins';

@@ -18,7 +18,8 @@ import { PersistenceService } from '../shared/services/persistence-service';
     SharedModule
   ],
   exports: [
-    SidenavModeComponent
+    SidenavModeComponent,
+
   ],
   providers: [PersistenceService]
 })

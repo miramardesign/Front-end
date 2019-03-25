@@ -11,7 +11,7 @@ import { RedditDescComponent } from './reddit-desc/reddit-desc.component';
     CommonModule
   ],
   exports: [
-    RedditListComponent,
+    RedditListComponent, RedditDescComponent
   ],
   providers: [PersistenceService]
 })

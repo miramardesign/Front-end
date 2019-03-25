@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { RedditServiceService } from '../services/reddit-service.service';
+import { PersistenceService } from '../services/persistence-service';
+import * as md from '../../shared/models';
 
 @Component({
   selector: 'app-reddit-desc',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RedditDescComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private redditService: RedditServiceService, public perist: PersistenceService) { }
+  private redditDesc: md.DataChild;
   ngOnInit() {
+
+    this.redditService.getDesc().subscribe(child => {
+      this.redditDesc = child;
+    });
+
   }
 
 }

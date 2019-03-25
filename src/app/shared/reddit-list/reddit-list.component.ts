@@ -44,6 +44,7 @@ export class RedditListComponent implements OnInit {
    */
   public onItemClick(item) {
     console.log('on itemclick called', item); // TODO;
+    this.redditService.setDesc(item);
   }
 
   /**
