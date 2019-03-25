@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, of } from 'rxjs';
 
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, tap, distinctUntilChanged } from 'rxjs/operators';
 import { HandleErrorMixin, Activatable, Mixin } from '../../shared/mixins/mixins';
 import * as md from '../../shared/models';
 
@@ -18,6 +18,9 @@ import * as md from '../../shared/models';
 export class RedditServiceService {
 
   listDesc$ = new Subject<md.DataChild>();
+ // private listDesc$: md.DataChild[];
+  //heroes: Hero[];
+
   handleError: (err: HttpErrorResponse) => Observable<any>;
 
   constructor(private http: HttpClient) {
@@ -30,10 +33,10 @@ export class RedditServiceService {
    *
    * @param num the number of posts
    */
-  public getTop(num: number): Observable<any> {
+  public getTop(num: number): Observable<md.RootObject> {
     const topUrl = `https://www.reddit.com/r/all/top.json?limit=${num}`;
 
-    return this.http.get<any>(topUrl)
+    return this.http.get<md.RootObject>(topUrl)
       .pipe(
         tap(_ => { }),
         catchError(this.handleError)
@@ -44,7 +47,7 @@ export class RedditServiceService {
    * set the current clicked description after its clicked
    * @param num the number of posts
    */
-  public setDesc(desc: any) {
+  public setDesc(desc: md.DataChild) {
     this.listDesc$.next(desc);
   }
 
@@ -53,8 +56,7 @@ export class RedditServiceService {
    * @param num the number of posts
    */
   public getDesc(): Observable<md.DataChild> {
-    return this.listDesc$.distinctUntilChanged();
+    return this.listDesc$.pipe(distinctUntilChanged());
   }
-
 
 }

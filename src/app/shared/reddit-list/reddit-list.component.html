@@ -52,9 +52,9 @@
 
 </ul>
 
-<a (click)="onDismissAll(redditList)"
+<a (click)="onDismissAll(redditList)" class="cursor-pointer"
   *ngIf="dismissList.length < 49"> <i class="material-icons">
     highlight_off
   </i> Dismiss All </a>
-<a (click)="onRestoreAll()"
+<a (click)="onRestoreAll()" class="cursor-pointer"
   *ngIf="dismissList.length > 1"><i class="material-icons"> highlight_off </i> Restore All </a>
