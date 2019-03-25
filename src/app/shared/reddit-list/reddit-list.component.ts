@@ -11,7 +11,7 @@ export class RedditListComponent implements OnInit {
 
   public redditList: any = [];
   public now = new Date().getTime() / 1000;
-  constructor(private redditService: RedditServiceService, private perist: PersistenceService) { }
+  constructor(private redditService: RedditServiceService, public perist: PersistenceService) { }
 
   /**
    * dismiss the listing and persist it as well
@@ -19,6 +19,7 @@ export class RedditListComponent implements OnInit {
    */
   public onDismiss(id: string) {
     console.log('onDismiss called with id', id); // TODO;
+    this.perist.set(id, true);
   }
 
   /**
@@ -26,6 +27,13 @@ export class RedditListComponent implements OnInit {
    */
   public onDismissAll() {
     console.log('dismissAll called'); // TODO;
+  }
+
+  /**
+   * push the item into the main view
+   */
+  public onItemClick(item) {
+    console.log('on itemclick called', item); // TODO;
   }
 
   /**

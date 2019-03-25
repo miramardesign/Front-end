@@ -33,7 +33,6 @@ export class RedditServiceService {
   public getTop(num: number): Observable<any> {
     const topUrl = `https://www.reddit.com/r/all/top.json?limit=${num}`;
 
-    // const orgApiOrgUrl = `${environment.API.organizations.organizations}/${organizationId}`;
     return this.http.get<any>(topUrl)
       .pipe(
         tap(_ => { }),

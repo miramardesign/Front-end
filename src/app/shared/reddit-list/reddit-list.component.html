@@ -8,25 +8,31 @@
 
 
 <ul *ngIf="redditList">
-  <li *ngFor="let item of redditList" class="nav-item">
-    {{item?.data?.author}}
-    {{now - item?.data.created | agoPipe}}
+  <div *ngIf="!persist?.get(item.data.id)">
+    <li *ngFor="let item of redditList"
+      (click)="onItemClick(item)"
+      class="nav-item">
+      {{item?.data?.author}}
+      {{now - item?.data.created | agoPipe}}
 
-    <br /> 
-    <!-- use grid -->
-    
-    <img [src]="item.data.thumbnail" [alt]="item.data.title" />
-      -  {{item?.data?.title}} - chevron
-
-    <br /> 
+      <br />
       <!-- use grid -->
-     <a (click)="onDismiss(item.data.id)" > (x) Dismiss </a> 
+
+      <img [src]="item.data.thumbnail"
+        [alt]="item.data.title" />
+      - {{item?.data?.title}} - chevron
+
+      <br />
+      <!-- use grid -->
+      <a (click)="onDismiss(item.data.id)"> (x) Dismiss </a>
       - <span class="nothing-rhymes-with-orange">{{item?.data.num_comments }} comments</span>
 
-     <hr />
-  </li>  
-  
+      <hr />
+    </li>
+  </div>
+
+
 </ul>
 
-<a (click)="onDismissAll()" > (x) Dismiss All </a>
-<a (click)="onRestoreAll()" > (x) Restore All </a>
+<a (click)="onDismissAll()"> (x) Dismiss All </a>
+<a (click)="onRestoreAll()"> (x) Restore All </a>
