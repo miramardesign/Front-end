@@ -8,8 +8,11 @@
 .bluebullets{
     color: blue; 
     font-size: 50px;
+    line-height: 30px;
 }
 
 .bluebullets.visited{
     color: transparent; 
 }
+
+.bdr-btm{ border-bottom: 1px solid grey;}
