@@ -43,6 +43,10 @@ export class RedditListComponent implements OnInit {
     console.log('restoreAll called'); // TODO;
   }
 
+  public hasPersist(id) {
+    return this.perist.get(id);
+  }
+
 
   ngOnInit() {
 
