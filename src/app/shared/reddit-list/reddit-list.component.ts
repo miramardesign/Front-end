@@ -40,6 +40,7 @@ export class RedditListComponent implements OnInit {
 
     redditList.forEach(item => {
       const id = item.data.id;
+      item.dismissed = true;
       if (this.dismissedList.indexOf(id) === -1) {
         this.dismissedList.push(id);
       }
@@ -66,7 +67,12 @@ export class RedditListComponent implements OnInit {
    * restore all listings or we cant see them again if persisted
    */
   public onRestoreAll() {
-    console.log('restoreAll called'); // TODO;
+    console.log('restoreAll called');
+
+    this.redditList.forEach(item => {
+      item.dismissed = false;
+    });
+
     this.dismissedList = [];
     this.perist.set('dismissed', this.dismissedList);
   }

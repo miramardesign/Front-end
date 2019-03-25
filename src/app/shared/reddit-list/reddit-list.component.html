@@ -1,85 +1,87 @@
-<ul id="item-list"
-  class="list-unstyled"
-  *ngIf="redditList">
+<div id="item-list">
+  <ul class="list-unstyled"
+    *ngIf="redditList">
 
-  <div *ngFor="let item of redditList">
-    <li *ngIf="!item?.dismissed"
-      class="nav-item">
+    <div *ngFor="let item of redditList">
+      <li *ngIf="!item?.dismissed"
+        class="nav-item">
 
-      <div class="row">
-        <div class="col-md-10">
-          <span [ngClass]="{'visited': item.isVisited}"
-            class="bluebullets">&bull;</span>
-          <span class="cursor-pointer"
-            (click)="onItemClick(item)">
-            {{item?.data?.author}} {{now - item?.data.created | agoPipe}}
-          </span>
-        </div>
-      </div>
-      <div class="row align-items-center">
-
-        <div class="col-md-5">
-
-          <span class="cursor-pointer"
-            (click)="onItemClick(item)">
-            <img [src]="item.data.thumbnail"
-              [alt]="item.data.title" />
-
-          </span>
-        </div>
-
-        <div class="col-md-5">
-
-          <span class="cursor-pointer"
-            (click)="onItemClick(item)">
-
-            {{item?.data?.title}}
-          </span>
-        </div>
-        <div class="col-md-1">
-
-          <div class="d-table">
-            <span class="d-table-cell align-middle">
-
-              <i class="material-icons">
-                chevron_right
-              </i>
+        <div class="row">
+          <div class="col-md-10">
+            <span [ngClass]="{'visited': item.isVisited}"
+              class="bluebullets">&bull;</span>
+            <span class="cursor-pointer"
+              (click)="onItemClick(item)">
+              {{item?.data?.author}} {{now - item?.data.created | agoPipe}}
             </span>
           </div>
         </div>
+        <div class="row align-items-center">
 
-      </div>
-      <div class="row ">
+          <div class="col-md-5">
 
-        <div class="col-md-10">
+            <span class="cursor-pointer"
+              (click)="onItemClick(item)">
+              <img [src]="item.data.thumbnail"
+                [alt]="item.data.title" />
 
-          <a (click)="onDismiss(item)"
-            class="cursor-pointer">
-            <i class="material-icons nothing-rhymes-with-orange">
-              highlight_off
-            </i>
-            Dismiss Post </a>
-          <span class="nothing-rhymes-with-orange d-inline-block pull-right ml-1">{{item?.data.num_comments }}
-            comments</span>
+            </span>
+          </div>
+
+          <div class="col-md-5">
+
+            <span class="cursor-pointer"
+              (click)="onItemClick(item)">
+
+              {{item?.data?.title}}
+            </span>
+          </div>
+          <div class="col-md-1">
+
+            <div class="d-table">
+              <span class="d-table-cell align-middle">
+
+                <i class="material-icons">
+                  chevron_right
+                </i>
+              </span>
+            </div>
+          </div>
 
         </div>
-      </div>
+        <div class="row ">
 
-      <div class="row">
-        <div class="col-md-10 offset-md-1 bdr-btm mt-2"></div>
+          <div class="col-md-10">
 
-      </div>
+            <a (click)="onDismiss(item)"
+              class="cursor-pointer">
+              <i class="material-icons nothing-rhymes-with-orange">
+                highlight_off
+              </i>
+              Dismiss Post </a>
+            <span class="nothing-rhymes-with-orange d-inline-block pull-right ml-1">{{item?.data.num_comments }}
+              comments</span>
 
-    </li>
-  </div>
+          </div>
+        </div>
 
-</ul>
+        <div class="row">
+          <div class="col-md-10 offset-md-1 bdr-btm mt-2"></div>
 
-<a (click)="onDismissAll(redditList)"
-  class="cursor-pointer"
-  *ngIf="dismissedList.length < 49"> <i class="material-icons">
-    highlight_off
-  </i> Dismiss All </a>
-<a (click)="onRestoreAll()"
-  class="cursor-pointer"
-  *ngIf="dismissedList.length > 1"><i class="material-icons"> highlight_off </i> Restore All </a>
+        </div>
+
+      </li>
+    </div>
+
+  </ul>
+
+  <a (click)="onDismissAll(redditList)"
+    class="cursor-pointer nothing-rhymes-with-orange"
+    *ngIf="dismissedList.length < 49"> <i class="material-icons nothing-rhymes-with-orange ">
+      highlight_off
+    </i> Dismiss All </a>
+  <a (click)="onRestoreAll()"
+    class="cursor-pointer nothing-rhymes-with-orange "
+    *ngIf="dismissedList.length > 1"><i class="material-icons nothing-rhymes-with-orange "> highlight_off </i> Restore All </a>
+
+</div>
