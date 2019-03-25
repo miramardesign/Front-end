@@ -1,34 +1,61 @@
-
-
 <ul *ngIf="redditList">
 
-
-  {{dismissList | json}}
-  <div *ngFor="let item of redditList"  >
-    <li *ngIf="!hasPersist(item?.data?.id)" 
+  <!-- 
+  {{redditList |json}}
+  {{dismissList | json}} -->
+  <div *ngFor="let item of redditList">
+    <li *ngIf="!isDismissed(item?.data?.id)"
       (click)="onItemClick(item)"
       class="nav-item">
 
+      <div class="row">
+        <div class="col-md-10">
 
-      {{item?.data?.author}}
-      {{now - item?.data.created | agoPipe}}
+          {{item?.data?.author}}
+          {{now - item?.data.created | agoPipe}}
+        </div>
+      </div>
+      <div class="row">
 
-      <br />
-      <!-- use grid -->
-      <img [src]="item.data.thumbnail"
-        [alt]="item.data.title" />
-      - {{item?.data?.title}} - chevron
-      <br />
-      <!-- use grid -->
-      <a (click)="onDismiss(item.data.id)"> (x) Dismiss </a>
-      - <span class="nothing-rhymes-with-orange">{{item?.data.num_comments }} comments</span>
+        <div class="col-md-10">
 
+          <img [src]="item.data.thumbnail"
+            [alt]="item.data.title" />
+          - {{item?.data?.title}}
+
+
+        </div>
+        <div class="col-md-2">
+          <i class="material-icons">
+            chevron_right
+          </i>
+        </div>
+
+
+      </div>
+      <div class="row">
+
+        <div class="col-md-10">
+
+          <!-- use grid -->
+          <a (click)="onDismiss(item.data.id)" class="cursor-pointer">
+            <i class="material-icons">
+              highlight_off
+            </i>
+            Dismiss </a>
+          - <span class="nothing-rhymes-with-orange">{{item?.data.num_comments }} comments</span>
+
+        </div>
+      </div>
       <hr />
     </li>
   </div>
 
-
 </ul>
 
-<a (click)="onDismissAll()"> (x) Dismiss All </a>
-<a (click)="onRestoreAll()"> (x) Restore All </a>
+<a (click)="onDismissAll(redditList)"
+  *ngIf="dismissList.length < 49"> <i class="material-icons">
+    highlight_off
+  </i> Dismiss All </a>
+<a (click)="onRestoreAll()"
+  *ngIf="dismissList.length > 1"><i class="material-icons"> highlight_off </i> Restore All </a>

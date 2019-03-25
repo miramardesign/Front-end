@@ -25,11 +25,18 @@ export class RedditListComponent implements OnInit {
   }
 
   /**
-   * dismiss all listings
+   * dismiss all listings by adding them all to a list and then pushing to persistence
    */
-  public onDismissAll() {
+  public onDismissAll(redditList) {
     console.log('dismissAll called'); // TODO;
-    this.perist.set('dismiss' +  'all', true);
+
+    redditList.forEach(item => {
+      const id = item.data.id;
+      if (this.dismissList.indexOf(id) === -1) {
+        this.dismissList.push(id);
+      }
+    });
+    this.perist.set('dismiss', this.dismissList );
   }
 
   /**
@@ -48,11 +55,13 @@ export class RedditListComponent implements OnInit {
     this.perist.set('dismiss', this.dismissList );
   }
 
-  public hasPersist(id) {
-    //return this.perist.get('dismiss.' + id);
+  /**
+   * if the item has been dismissed
+   * @param id id to show hide
+   */
+  public isDismissed(id) {
     return this.dismissList.indexOf(id) > -1;
   }
-
 
   ngOnInit() {
 
