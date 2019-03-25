@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RedditDescComponent } from './reddit-desc.component';
+import { HttpClientModule } from '@angular/common/http';
+import { PersistenceService } from '../services/persistence-service';
 
 describe('RedditDescComponent', () => {
   let component: RedditDescComponent;
@@ -8,9 +10,14 @@ describe('RedditDescComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RedditDescComponent ]
+      declarations: [RedditDescComponent],
+      providers: [
+        PersistenceService
+      ],
+      imports: [HttpClientModule]
+
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
