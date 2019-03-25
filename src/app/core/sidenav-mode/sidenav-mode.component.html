@@ -1,8 +1,7 @@
-<mat-sidenav-container class="example-container" >
+<mat-sidenav-container class="sidenav-container" >
   <mat-sidenav #sidenav [mode]="mode.value">
     <p><button mat-button (click)="sidenav.toggle()">Toggle</button></p>
     <p>
-
 
       <app-reddit-list></app-reddit-list>
     </p>
@@ -10,20 +9,7 @@
 
   <mat-sidenav-content>
     <p><button mat-button (click)="sidenav.toggle()">Toggle</button></p>
-    <p>
-      <!-- <mat-radio-group class="example-radio-group" [formControl]="mode">
-        <label>Mode:</label>
-        <mat-radio-button value="over">Over</mat-radio-button>
-        <mat-radio-button value="side">Side</mat-radio-button>
-        <mat-radio-button value="push">Push</mat-radio-button>
-      </mat-radio-group> -->
-    </p>
+      <app-reddit-desc></app-reddit-desc>
   </mat-sidenav-content>
 </mat-sidenav-container>
 
-
-<!-- Creates a layout with a left-positioned sidenav and explicit content. -->
-<!-- <mat-sidenav-container>
-  <mat-sidenav>Start</mat-sidenav>
-  <mat-sidenav-content>Main</mat-sidenav-content>
-</mat-sidenav-container> -->

@@ -1,22 +1,23 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 import { catchError, tap } from 'rxjs/operators';
 import { HandleErrorMixin, Activatable, Mixin } from '../../shared/mixins/mixins';
+import * as md from '../../shared/models';
 
 /**
  * service for interacting with reddit api:
- * https://www.reddit.com/dev/api
+ *  https://www.reddit.com/dev/api
  */
-
 @Injectable({
   providedIn: 'root'
 })
 @Mixin([Activatable, HandleErrorMixin])
 
 export class RedditServiceService {
+
+  listDesc$ = new Subject<md.DataChild>();
   handleError: (err: HttpErrorResponse) => Observable<any>;
 
   constructor(private http: HttpClient) {
@@ -24,7 +25,6 @@ export class RedditServiceService {
 
   // may need oauth?
   // https://www.reddit.com/r/videos/top.json?limit=50
-
 
   /**
    *
@@ -39,5 +39,22 @@ export class RedditServiceService {
         catchError(this.handleError)
       );
   }
+
+  /**
+   * set the current clicked description after its clicked
+   * @param num the number of posts
+   */
+  public setDesc(desc: any) {
+    this.listDesc$.next(desc);
+  }
+
+  /**
+   * get the current clicked description after its clicked
+   * @param num the number of posts
+   */
+  public getDesc(): Observable<md.DataChild> {
+    return this.listDesc$.distinctUntilChanged();
+  }
+
 
 }
