@@ -10,11 +10,13 @@ import { PersistenceService } from '../services/persistence-service';
 export class RedditListComponent implements OnInit {
 
   public redditList: any = [];
-  public dismissList: any = [];
+  public dismissedList: any = [];
   public visitedList: any = [];
 
   public now = new Date().getTime() / 1000;
-  constructor(private redditService: RedditServiceService, public perist: PersistenceService) { }
+  constructor(
+    private redditService: RedditServiceService,
+    public perist: PersistenceService) { }
 
   /**
    * dismiss the listing and persist it as well
@@ -24,9 +26,9 @@ export class RedditListComponent implements OnInit {
     item.dismissed = true;
     if (!this.isDismissed(item.data.id)) {
 
-      this.dismissList.push(item.data.id);
+      this.dismissedList.push(item.data.id);
       console.log('onDismiss called with id', item.data.id);
-      this.perist.set('dismiss', this.dismissList);
+      this.perist.set('dismissed', this.dismissedList);
     }
   }
 
@@ -38,11 +40,11 @@ export class RedditListComponent implements OnInit {
 
     redditList.forEach(item => {
       const id = item.data.id;
-      if (this.dismissList.indexOf(id) === -1) {
-        this.dismissList.push(id);
+      if (this.dismissedList.indexOf(id) === -1) {
+        this.dismissedList.push(id);
       }
     });
-    this.perist.set('dismiss', this.dismissList);
+    this.perist.set('dismissed', this.dismissedList);
   }
 
   /**
@@ -65,8 +67,8 @@ export class RedditListComponent implements OnInit {
    */
   public onRestoreAll() {
     console.log('restoreAll called'); // TODO;
-    this.dismissList = [];
-    this.perist.set('dismiss', this.dismissList);
+    this.dismissedList = [];
+    this.perist.set('dismissed', this.dismissedList);
   }
 
   /**
@@ -74,7 +76,7 @@ export class RedditListComponent implements OnInit {
    * @param id id to show hide
    */
   public isDismissed(id) {
-    return this.dismissList.indexOf(id) > -1;
+    return this.dismissedList.indexOf(id) > -1;
   }
 
   /**
@@ -87,7 +89,7 @@ export class RedditListComponent implements OnInit {
 
   ngOnInit() {
 
-    this.dismissList = this.perist.get('dismiss') || [];
+    this.dismissedList = this.perist.get('dismissed') || [];
     this.visitedList = this.perist.get('visited') || [];
 
     /** get the listings from the api */
@@ -97,10 +99,10 @@ export class RedditListComponent implements OnInit {
 
         // pushed dismissed and visted into items
         this.redditList.forEach(item => {
-          if (this.dismissList.indexOf(item.data.id) > 0) {
-            item.isDismissed = true;
+          if (this.dismissedList.indexOf(item.data.id) > -1) {
+            item.dismissed = true;
           }
-          if (this.visitedList.indexOf(item.data.id) > 0) {
+          if (this.visitedList.indexOf(item.data.id) > -1) {
             item.isVisited = true;
           }
 

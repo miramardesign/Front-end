@@ -4,7 +4,7 @@
   {{redditList |json}}
   {{dismissList | json}} -->
   <div *ngFor="let item of redditList">
-    <li *ngIf="!item.isDismissed"
+    <li *ngIf="!item?.dismissed"
       class="nav-item">
 
       <div class="row">
@@ -55,8 +55,8 @@
 </ul>
 
 <a (click)="onDismissAll(redditList)" class="cursor-pointer"
-  *ngIf="dismissList.length < 49"> <i class="material-icons">
+  *ngIf="dismissedList.length < 49"> <i class="material-icons">
     highlight_off
   </i> Dismiss All </a>
 <a (click)="onRestoreAll()" class="cursor-pointer"
-  *ngIf="dismissList.length > 1"><i class="material-icons"> highlight_off </i> Restore All </a>
+  *ngIf="dismissedList.length > 1"><i class="material-icons"> highlight_off </i> Restore All </a>
