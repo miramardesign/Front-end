@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RedditServiceService } from '../services/reddit-service.service';
+import { PersistenceService } from '../services/persistence-service';
 
 @Component({
   selector: 'app-reddit-list',
@@ -10,46 +11,27 @@ export class RedditListComponent implements OnInit {
 
   public redditList: any = [];
   public now = new Date().getTime() / 1000;
-  constructor(private redditService: RedditServiceService) { }
-
-
-   public itemPluralMapping = {
-    second: {
-      '=0': 'Just now',
-      '=1': 'Just Now',
-      other: '# Seconds ago'
-    },
-    minute: {
-      //'=0' : '1 minute ago',
-      '=1': '1 minute ago',
-      other: '# minutes ago'
-    },
-    hour: {
-      //'=0' : '1 hour ago',
-      '=1': '1 hour ago',
-      other: '# hours ago'
-    },
-  };
+  constructor(private redditService: RedditServiceService, private perist: PersistenceService) { }
 
   /**
    * dismiss the listing and persist it as well
    * @param id a unique identifier to persist
    */
-  public dismiss(id: string) {
-    console.log('id', id); // TODO;
+  public onDismiss(id: string) {
+    console.log('onDismiss called with id', id); // TODO;
   }
 
   /**
    * dismiss all listings
    */
-  public dismissAll(id: string) {
+  public onDismissAll() {
     console.log('dismissAll called'); // TODO;
   }
 
   /**
    * restore all listings or we cant see them again if persisted
    */
-  public restoreAll(id: string) {
+  public onRestoreAll() {
     console.log('restoreAll called'); // TODO;
   }
 

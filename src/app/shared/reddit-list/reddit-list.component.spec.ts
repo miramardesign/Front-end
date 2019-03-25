@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RedditListComponent } from './reddit-list.component';
 import { AgoPipe } from '../pipes/ago-pipe.pipe';
 import { HttpClientModule } from '@angular/common/http';
+import { PersistenceService } from '../services/persistence-service';
 
 describe('RedditListComponent', () => {
   let component: RedditListComponent;
@@ -12,7 +13,7 @@ describe('RedditListComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ RedditListComponent, AgoPipe ],
       providers: [
-        // AgoPipe
+        PersistenceService
       ],
       imports: [HttpClientModule]
     })
