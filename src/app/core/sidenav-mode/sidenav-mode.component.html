@@ -1,5 +1,5 @@
-<mat-sidenav-container class="sidenav-container row" >
-  <mat-sidenav #sidenav [mode]="mode.value" opened class="col-md-4">
+<mat-sidenav-container class="sidenav-container row" [hasBackdrop]="'false'" >
+  <mat-sidenav #sidenav [mode]="'push'" opened class="col-md-4">
     <p><button mat-button (click)="sidenav.toggle()">Toggle</button></p>
     <div>
       <app-reddit-list></app-reddit-list>
