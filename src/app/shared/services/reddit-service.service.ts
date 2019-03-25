@@ -18,8 +18,6 @@ import * as md from '../../shared/models';
 export class RedditServiceService {
 
   listDesc$ = new Subject<md.DataChild>();
- // private listDesc$: md.DataChild[];
-  //heroes: Hero[];
 
   handleError: (err: HttpErrorResponse) => Observable<any>;
 
