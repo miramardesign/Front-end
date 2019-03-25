@@ -1,28 +1,30 @@
-<ul id="item-list" *ngIf="redditList">
+<ul id="item-list" class="list-unstyled" *ngIf="redditList">
 
   <!-- 
   {{redditList |json}}
   {{dismissList | json}} -->
   <div *ngFor="let item of redditList">
-    <li *ngIf="!isDismissed(item?.data?.id)"
-      (click)="onItemClick(item)"
+    <li *ngIf="!item.isDismissed"
       class="nav-item">
 
       <div class="row">
-        <div class="col-md-5">
-
-          {{item?.data?.author}}
-          {{now - item?.data.created | agoPipe}}
+        <div class="col-md-10">
+            <!-- *ngIf="!isVisited(item?.data?.id)" -->
+          <span [ngClass]="{'visited': item.isVisited}" class="bluebullets">&bull;</span>
+          <span class="cursor-pointer" (click)="onItemClick(item)">
+            {{item?.data?.author}}  {{now - item?.data.created | agoPipe}}
+          </span>
         </div>
       </div>
       <div class="row">
 
         <div class="col-md-10">
 
-          <img [src]="item.data.thumbnail"
-            [alt]="item.data.title" />
-          - {{item?.data?.title}}
-
+          <span class="cursor-pointer" (click)="onItemClick(item)">
+            <img [src]="item.data.thumbnail"
+              [alt]="item.data.title"  />
+            - {{item?.data?.title}}
+           </span>
         </div>
         <div class="col-md-2">
           <i class="material-icons">
@@ -37,7 +39,7 @@
         <div class="col-md-5">
 
           <!-- use grid -->
-          <a (click)="onDismiss(item.data.id)" class="cursor-pointer">
+          <a (click)="onDismiss(item)" class="cursor-pointer">
             <i class="material-icons nothing-rhymes-with-orange">
               highlight_off
             </i>

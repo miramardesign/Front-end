@@ -11,7 +11,7 @@ import * as md from '../../shared/models';
 export class RedditDescComponent implements OnInit {
 
   constructor(private redditService: RedditServiceService, public perist: PersistenceService) { }
-  private item: md.DataChild;
+  public item: md.DataChild;
   ngOnInit() {
 
     this.redditService.getDesc().subscribe(child => {
