@@ -10,6 +10,7 @@ import { PersistenceService } from '../services/persistence-service';
 export class RedditListComponent implements OnInit {
 
   public redditList: any = [];
+  public dismissList: any = [];
   public now = new Date().getTime() / 1000;
   constructor(private redditService: RedditServiceService, public perist: PersistenceService) { }
 
@@ -18,8 +19,9 @@ export class RedditListComponent implements OnInit {
    * @param id a unique identifier to persist
    */
   public onDismiss(id: string) {
+    this.dismissList.push(id);
     console.log('onDismiss called with id', id); // TODO;
-    this.perist.set(id, true);
+    this.perist.set('dismiss', this.dismissList );
   }
 
   /**
@@ -27,6 +29,7 @@ export class RedditListComponent implements OnInit {
    */
   public onDismissAll() {
     console.log('dismissAll called'); // TODO;
+    this.perist.set('dismiss' +  'all', true);
   }
 
   /**
@@ -41,14 +44,19 @@ export class RedditListComponent implements OnInit {
    */
   public onRestoreAll() {
     console.log('restoreAll called'); // TODO;
+    this.dismissList = [];
+    this.perist.set('dismiss', this.dismissList );
   }
 
   public hasPersist(id) {
-    return this.perist.get(id);
+    //return this.perist.get('dismiss.' + id);
+    return this.dismissList.indexOf(id) > -1;
   }
 
 
   ngOnInit() {
+
+    this.dismissList = this.perist.get('dismiss') || [];
 
     /** get the listings from the api */
     this.redditService.getTop(50).subscribe(resTop => {

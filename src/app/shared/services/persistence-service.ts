@@ -20,4 +20,7 @@ export class PersistenceService {
       return null;
     }
   }
+  clear(): void {
+    localStorage.clear();
+  }
 }

@@ -3,10 +3,13 @@
 <ul *ngIf="redditList">
 
 
+  {{dismissList | json}}
   <div *ngFor="let item of redditList"  >
     <li *ngIf="!hasPersist(item?.data?.id)" 
       (click)="onItemClick(item)"
       class="nav-item">
+
+
       {{item?.data?.author}}
       {{now - item?.data.created | agoPipe}}
 
