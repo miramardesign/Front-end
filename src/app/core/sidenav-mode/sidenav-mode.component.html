@@ -1,5 +1,13 @@
-<mat-sidenav-container class="sidenav-container row" [hasBackdrop]="'false'" >
-  <mat-sidenav id="come-to-the-dark-sidenav" #sidenav [mode]="'push'" opened class="col-md-4">
+<mat-sidenav-container #sidenavcont
+  class="sidenav-container row"
+  [hasBackdrop]="'false'" >
+  <mat-sidenav 
+    id="come-to-the-dark-sidenav"
+    #sidenav [mode]="'push'" 
+    opened class="col-md-4"
+    
+    (click)="closeIfHandset(sidenav)"
+  >
     <div>
       <app-reddit-list></app-reddit-list>
     </div>

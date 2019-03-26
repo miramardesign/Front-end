@@ -73,7 +73,6 @@ export class RedditListComponent implements OnInit {
       this.visitedList.push(item.data.id);
       item.isVisited = true;
       this.perist.set('visited', this.visitedList);
-
     }
     this.redditService.setDesc(item);
   }
