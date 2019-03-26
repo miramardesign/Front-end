@@ -1,14 +1,17 @@
+
 <div id="item-list">
+  <h1 class="text-center">Reddit Posts</h1> 
+
   <ul class="list-unstyled"
     *ngIf="redditList">
 
     <div *ngFor="let item of redditList">
-      <li *ngIf="!item?.dismissed"  [@enterAnimation]
+      <li *ngIf="!item?.data.hidden"  [@enterAnimation]
         class="nav-item">
 
         <div class="row">
           <div class="col-md-10">
-            <span [ngClass]="{'visited': item.isVisited}"
+            <span [ngClass]="{'visited': item?.data?.hidden}"
               class="bluebullets">&bull;</span>
             <span class="cursor-pointer"
               (click)="onItemClick(item)">
@@ -77,11 +80,11 @@
 
   <a (click)="onDismissAll(redditList)"
     class="cursor-pointer nothing-rhymes-with-orange"
-    *ngIf="dismissedList.length < 49"> <i class="material-icons nothing-rhymes-with-orange ">
+    *ngIf="dismissedList?.length < 49"> <i class="material-icons nothing-rhymes-with-orange ">
       highlight_off
     </i> Dismiss All </a>
   <a (click)="onRestoreAll()"
     class="cursor-pointer nothing-rhymes-with-orange "
-    *ngIf="dismissedList.length > 1"><i class="material-icons nothing-rhymes-with-orange "> highlight_off </i> Restore All </a>
+    *ngIf="dismissedList?.length > 1"><i class="material-icons nothing-rhymes-with-orange "> highlight_off </i> Restore All </a>
 
 </div>

@@ -25,7 +25,7 @@ import { trigger, style, animate, transition } from '@angular/animations';
 export class RedditListComponent implements OnInit {
 
   public redditList: any = [];
-  public dismissedList: any = [];
+  public hiddenList: any = [];
   public visitedList: any = [];
 
   public now = new Date().getTime() / 1000;
@@ -41,9 +41,9 @@ export class RedditListComponent implements OnInit {
     item.dismissed = true;
     if (!this.isDismissed(item.data.id)) {
 
-      this.dismissedList.push(item.data.id);
+      this.hiddenList.push(item.data.id);
       console.log('onDismiss called with id', item.data.id);
-      this.perist.set('dismissed', this.dismissedList);
+      this.perist.set('dismissed', this.hiddenList);
     }
   }
 
@@ -56,11 +56,11 @@ export class RedditListComponent implements OnInit {
     redditList.forEach(item => {
       const id = item.data.id;
       item.dismissed = true;
-      if (this.dismissedList.indexOf(id) === -1) {
-        this.dismissedList.push(id);
+      if (this.hiddenList.indexOf(id) === -1) {
+        this.hiddenList.push(id);
       }
     });
-    this.perist.set('dismissed', this.dismissedList);
+    this.perist.set('hidden', this.hiddenList);
   }
 
   /**
@@ -85,11 +85,11 @@ export class RedditListComponent implements OnInit {
     console.log('restoreAll called');
 
     this.redditList.forEach(item => {
-      item.dismissed = false;
+      item.data.hidden = false;
     });
 
-    this.dismissedList = [];
-    this.perist.set('dismissed', this.dismissedList);
+    this.hiddenList = [];
+    this.perist.set('hidden', this.hiddenList);
   }
 
   /**
@@ -97,7 +97,7 @@ export class RedditListComponent implements OnInit {
    * @param id id to show hide
    */
   public isDismissed(id) {
-    return this.dismissedList.indexOf(id) > -1;
+    return this.hiddenList.indexOf(id) > -1;
   }
 
   /**
@@ -110,7 +110,7 @@ export class RedditListComponent implements OnInit {
 
   ngOnInit() {
 
-    this.dismissedList = this.perist.get('dismissed') || [];
+    this.hiddenList = this.perist.get('hidden') || [];
     this.visitedList = this.perist.get('visited') || [];
 
     /** get the listings from the api */
@@ -120,11 +120,11 @@ export class RedditListComponent implements OnInit {
 
         // pushed dismissed and visted into items
         this.redditList.forEach(item => {
-          if (this.dismissedList.indexOf(item.data.id) > -1) {
-            item.dismissed = true;
+          if (this.hiddenList.indexOf(item.data.id) > -1) {
+            item.data.hidden = true;
           }
           if (this.visitedList.indexOf(item.data.id) > -1) {
-            item.isVisited = true;
+            item.data.visited = true;
           }
 
         });
