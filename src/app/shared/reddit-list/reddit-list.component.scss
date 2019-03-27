@@ -3,12 +3,20 @@
     background-color: black;
 }
 
-.nothing-rhymes-with-orange { color: orange}
+.material-icons.nothing-rhymes-with-orange{
+    position: relative;
+    top: 6px;
+}
+
+.nothing-rhymes-with-orange { 
+    color: orange;
+}
 
 .bluebullets{
+    position: relative;
+    top: 7px;
     color: blue; 
     font-size: 50px;
-    line-height: 30px;
 }
 
 .bluebullets.visited{

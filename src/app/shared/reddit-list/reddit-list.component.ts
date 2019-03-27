@@ -71,7 +71,7 @@ export class RedditListComponent implements OnInit {
 
     if (!this.isVisited(item.data.id)) {
       this.visitedList.push(item.data.id);
-      item.isVisited = true;
+      item.data.visited = true;
       this.perist.set('visited', this.visitedList);
     }
     this.redditService.setDesc(item);
@@ -86,9 +86,11 @@ export class RedditListComponent implements OnInit {
     this.redditList.forEach(item => {
       item.data.hidden = false;
     });
+    this.visitedList = [];
+    this.perist.set('visited', []);
 
     this.hiddenList = [];
-    this.perist.set('hidden', this.hiddenList);
+    this.perist.set('hidden', []);
   }
 
   /**
