@@ -21,15 +21,15 @@ export class SidenavModeComponent implements OnInit {
   constructor(private breakpointObserver: BreakpointObserver) { }
 
   closeIfHandset(sidenav) {
-    console.log('closeif handset called', this.isHandset$);
 
+    /**
+     * if small close the drawer so that they can see the content
+     */
     this.isHandset$.subscribe(res => {
-      console.log('res', res.valueOf());
       if (res.valueOf() === true) {
         sidenav.toggle();
       }
     });
-
   }
 
   ngOnInit() {
