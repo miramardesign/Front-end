@@ -21,7 +21,7 @@
         </div>
         <div class="row align-items-center">
 
-          <div class="col-md-5">
+          <div class="col-md-5 col-sm-5 col-5">
 
             <span class="cursor-pointer"
               (click)="onItemClick(item)">
@@ -31,7 +31,7 @@
             </span>
           </div>
 
-          <div class="col-md-5">
+          <div class="col-md-5 col-sm-5 col-5">
 
             <span class="cursor-pointer"
               (click)="onItemClick(item)">
@@ -39,7 +39,7 @@
               {{item?.data?.title}}
             </span>
           </div>
-          <div class="col-md-1">
+          <div class="col-md-1 col-sm-1 col-1">
 
             <div class="d-table">
               <span class="d-table-cell align-middle">
@@ -80,11 +80,11 @@
 
   <a (click)="onDismissAll(redditList)"
     class="cursor-pointer nothing-rhymes-with-orange"
-    *ngIf="dismissedList?.length < 49"> <i class="material-icons nothing-rhymes-with-orange ">
+    *ngIf="hiddenList?.length < 49"> <i class="material-icons nothing-rhymes-with-orange ">
       highlight_off
     </i> Dismiss All </a>
   <a (click)="onRestoreAll()"
     class="cursor-pointer nothing-rhymes-with-orange "
-    *ngIf="dismissedList?.length > 1"><i class="material-icons nothing-rhymes-with-orange "> highlight_off </i> Restore All </a>
+    *ngIf="hiddenList?.length > 1"><i class="material-icons nothing-rhymes-with-orange "> highlight_off </i> Restore All </a>
 
 </div>
