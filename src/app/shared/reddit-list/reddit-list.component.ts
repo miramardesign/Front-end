@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RedditServiceService } from '../services/reddit-service.service';
 import { PersistenceService } from '../services/persistence-service';
 import { trigger, style, animate, transition } from '@angular/animations';
+import * as md from '../../shared/models';
 
 @Component({
   selector: 'app-reddit-list',
@@ -37,13 +38,13 @@ export class RedditListComponent implements OnInit {
    * dismiss the listing and persist it as well
    * @param id a unique identifier to persist
    */
-  public onDismiss(item) {
-    item.dismissed = true;
-    if (!this.isDismissed(item.data.id)) {
+  public onDismiss(item: md.Child) {
+    item.data.hidden = true;
+    if (!this.isHidden(item.data.id)) {
 
       this.hiddenList.push(item.data.id);
       console.log('onDismiss called with id', item.data.id);
-      this.perist.set('dismissed', this.hiddenList);
+      this.perist.set('hidden', this.hiddenList);
     }
   }
 
@@ -97,7 +98,7 @@ export class RedditListComponent implements OnInit {
    * if the item has been dismissed
    * @param id id to show hide
    */
-  public isDismissed(id) {
+  public isHidden(id) {
     return this.hiddenList.indexOf(id) > -1;
   }
 
