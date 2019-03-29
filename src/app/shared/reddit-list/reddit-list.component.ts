@@ -98,7 +98,7 @@ export class RedditListComponent implements OnInit {
    * if the item has been dismissed
    * @param id id to show hide
    */
-  public isHidden(id) {
+  public isHidden(id: string) {
     return this.hiddenList.indexOf(id) > -1;
   }
 
@@ -106,7 +106,7 @@ export class RedditListComponent implements OnInit {
    * if the item has been dismissed
    * @param id id to show hide
    */
-  public isVisited(id) {
+  public isVisited(id: string) {
     return this.visitedList.indexOf(id) > -1;
   }
 

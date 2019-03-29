@@ -20,7 +20,9 @@ export class SidenavModeComponent implements OnInit {
 
   constructor(private breakpointObserver: BreakpointObserver) { }
 
-  closeIfHandset(sidenav) {
+  closeIfHandset(sidenav, event) {
+
+    console.log(event.target, 'event target');
 
     /**
      * if small close the drawer so that they can see the content

@@ -113,7 +113,7 @@ export interface Child {
 export interface Data {
     modhash: string;
     children: Child[];
-    after: string;
+    after?: string;
     before?: any;
 }
 

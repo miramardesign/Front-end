@@ -6,7 +6,7 @@
     #sidenav [mode]="'push'" 
     opened class="col-md-4"
     
-    (click)="closeIfHandset(sidenav)"
+    (click)="closeIfHandset(sidenav, $event )"
   >
     <div>
       <app-reddit-list></app-reddit-list>

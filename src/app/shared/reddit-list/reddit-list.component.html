@@ -53,17 +53,19 @@
         </div>
         <div class="row">
 
-          <div class="col-md-10">
+          <div class="col-md-5 col-5">
             <a (click)="onDismiss(item)"
-              class="cursor-pointer">
+              class="cursor-pointer dismiss-click">
               <i class="material-icons nothing-rhymes-with-orange">
                 highlight_off
               </i>
               Dismiss Post </a>
-            <span class="nothing-rhymes-with-orange d-inline-block pull-right ml-1">{{item?.data.num_comments }}
-              comments
-            </span>
           </div>
+          <div class="col-md-5 col-5">
+              <span class="nothing-rhymes-with-orange d-inline-block pull-right ml-1">{{item?.data.num_comments }}
+                comments
+              </span>
+            </div>
         </div>
 
         <div class="row">
